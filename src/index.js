@@ -7,7 +7,6 @@ import { createStore } from 'redux'
 import './index.css'
 import Counter from './App'
 import type { Increment, Decrement } from './App'
-import registerServiceWorker from './registerServiceWorker'
 
 export type State = { count: number }
 
@@ -23,12 +22,15 @@ const handleDecrement = (state: State, action: Decrement): State => ({
   count: state.count - 1
 })
 
-const reducer = (state: State = initialState, action): State => {
-  const handlers = {
-    INCREMENT: handleIncrement,
-    DECREMENT: handleDecrement
+const reducer = (state: State = initialState, action: Action): State => {
+  switch (action.type) {
+    case 'INCREMENT':
+      return handleIncrement(state, action)
+    case 'DECREMENT':
+      return handleDecrement(state, action)
+    default:
+      return state
   }
-  return handlers[action.type] ? handlers[action.type](state, action) : state
 }
 
 const store: State = createStore(reducer)
