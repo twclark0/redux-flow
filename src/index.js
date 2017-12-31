@@ -6,11 +6,7 @@ import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import './index.css'
 import Counter from './App'
-import type { Increment, Decrement } from './App'
-
-export type State = { count: number }
-
-type Action = Increment | Decrement
+import type { Increment, Decrement, Action, State } from './App'
 
 const initialState: State = { count: 0 }
 

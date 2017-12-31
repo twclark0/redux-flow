@@ -3,13 +3,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import type { Connector } from 'react-redux'
-import type { State } from './index.js'
 import logo from './logo.svg'
 import './App.css'
 
 export type Increment = { type: 'INCREMENT' }
 
 export type Decrement = { type: 'DECREMENT' }
+
+export type Action = Increment | Decrement
+
+export type State = { count: number }
 
 type Props = {
   decrement: () => Decrement,
@@ -25,9 +28,9 @@ class Counter extends Component<Props> {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <button onClick={this.props.decrement}>-</button>
+        <button className='minus' onClick={this.props.decrement}>-</button>
         <span>{this.props.count}</span>
-        <button onClick={this.props.increment}>+</button>
+        <button className='add' onClick={this.props.increment}>+</button>
       </div>
     )
   }
