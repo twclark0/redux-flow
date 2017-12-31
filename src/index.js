@@ -1,24 +1,21 @@
-// @flow
-
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import './index.css'
 import Counter from './App'
-import type { Increment, Decrement, Action, State } from './App'
 
-const initialState: State = { count: 0 }
+const initialState = { count: 0 }
 
-const handleIncrement = (state: State, action: Increment): State => ({
+const handleIncrement = (state, action) => ({
   count: state.count + 1
 })
 
-const handleDecrement = (state: State, action: Decrement): State => ({
+const handleDecrement = (state, action) => ({
   count: state.count - 1
 })
 
-const reducer = (state: State = initialState, action: Action): State => {
+const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'INCREMENT':
       return handleIncrement(state, action)
@@ -29,12 +26,12 @@ const reducer = (state: State = initialState, action: Action): State => {
   }
 }
 
-const store: State = createStore(reducer)
+const store = createStore(reducer)
 
 const App = () => (
   <Provider store={store}>
     <Counter />
   </Provider>
 )
-// $FlowIgnore
+
 ReactDOM.render(<App />, document.getElementById('root'))
